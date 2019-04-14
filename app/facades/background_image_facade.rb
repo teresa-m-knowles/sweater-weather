@@ -1,4 +1,4 @@
-class BackgroundImage < Location
+class BackgroundImageFacade < LocationFacade
   def service
     BingImageService.new(@city_and_state)
   end

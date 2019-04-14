@@ -1,4 +1,4 @@
-class Location
+class LocationFacade
 
   attr_reader :longitude,
               :latitude,

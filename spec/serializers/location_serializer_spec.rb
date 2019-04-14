@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Location Serializer' do
   before :each do
-    @location = Location.new('denver,co')
+    @location = LocationFacade.new('denver,co')
     @serializer = LocationSerializer.new(@location)
   end
   it 'exists' do

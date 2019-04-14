@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Location do
+RSpec.describe LocationFacade do
   before :each do
-    @location = Location.new('denver,co')
+    @location = LocationFacade.new('denver,co')
   end
 
   it 'exists' do
-    expect(@location).to be_a(Location)
+    expect(@location).to be_a(LocationFacade)
   end
 
   context 'instance methods' do

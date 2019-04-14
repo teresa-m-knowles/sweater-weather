@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe BackgroundImage do
+RSpec.describe BackgroundImageFacade do
   context 'Background image class' do
     before :each do
-      @image = BackgroundImage.new('denver,co')
+      @image = BackgroundImageFacade.new('denver,co')
     end
     it 'initiates a BingImageService' do
       expect(@image.service).to be_a(BingImageService)
