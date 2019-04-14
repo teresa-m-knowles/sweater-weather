@@ -4,7 +4,7 @@ class GeocodingService
 
   def initialize(city_and_state)
     @city_and_state = city_and_state
-    
+
   end
   def conn
     Faraday.new(url: 'https://maps.googleapis.com/maps/api/geocode/json?') do |faraday|
@@ -15,8 +15,6 @@ class GeocodingService
   def lat_lng
     get_location[:results][0][:geometry][:location]
   end
-
-
 
   def get_json(url)
     response = conn.get(url)
