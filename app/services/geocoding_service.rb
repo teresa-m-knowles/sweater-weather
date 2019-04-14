@@ -6,6 +6,7 @@ class GeocodingService
     @city_and_state = city_and_state
 
   end
+
   def conn
     Faraday.new(url: 'https://maps.googleapis.com/maps/api/geocode/json?') do |faraday|
       faraday.adapter Faraday.default_adapter
