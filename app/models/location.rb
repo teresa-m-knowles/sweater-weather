@@ -1,11 +1,11 @@
 class Location
+  
   attr_reader :longitude,
               :latitude,
               :city,
               :state,
               :country,
               :id
-
 
   def initialize(city_and_state)
     @id = 1
@@ -31,6 +31,6 @@ class Location
 
   def weather_service
     DarkSkyService.new
-
   end
+
 end

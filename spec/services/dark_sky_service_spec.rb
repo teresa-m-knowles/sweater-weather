@@ -11,7 +11,11 @@ RSpec.describe 'Dark sky service' do
     dark_sky_service = DarkSkyService.new
     denver_lat = 39.7392358
     denver_long = -104.990251
-    binding.pry
-    dark_sky_service.get_forecast(denver_lat, denver_long)
+
+    forecast = dark_sky_service.get_forecast(denver_lat, denver_long)
+
+    expect(forecast).to have_key("currently")
+    expect(forecast["currently"]).to have_key("summary")
+    expect(forecast["latitude"]).to eq(denver_lat)
   end
 end

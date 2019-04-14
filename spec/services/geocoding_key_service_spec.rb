@@ -14,7 +14,6 @@ RSpec.describe 'Geocoding Service' do
                   lat: 39.7392358,
                   lng: -104.990251
                       }
-    binding.pry
     expect(geocoding_service.lat_lng).to eq(denver_lat_long)
 
   end
