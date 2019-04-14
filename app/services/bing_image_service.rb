@@ -11,10 +11,12 @@ class BingImageService
   end
 
   def image_url
-    connection.get do |req|
+    response = connection.get do |req|
       req.url "?q=#{@city_and_state}&safeSearch=Strict"
       req.headers['Ocp-Apim-Subscription-Key'] = ENV['BING_KEY']
     end
+
+    JSON.parse(response.body)
   end
 
 

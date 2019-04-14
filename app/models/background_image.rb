@@ -4,7 +4,6 @@ class BackgroundImage < Location
   end
 
   def image_url
-    image = service.image_url
-    JSON.parse(image.body)["value"][0]["contentUrl"]
+    service.image_url["value"][0]["contentUrl"]
   end
 end
