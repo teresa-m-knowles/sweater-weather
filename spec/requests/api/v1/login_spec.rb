@@ -29,7 +29,6 @@ RSpec.describe 'User can login' do
                                           password: "password",
                                           password_confirmation: "password"
                                         }
-      user = User.last
 
       post '/api/v1/sessions', params: {
                                           email: "whatever@example.com",
