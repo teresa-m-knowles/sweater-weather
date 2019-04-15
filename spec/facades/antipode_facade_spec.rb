@@ -37,4 +37,8 @@ RSpec.describe AntipodeFacade do
     expect(@antipode.search_location).to eq("Hong Kong")
   end
 
+  it 'has a service of AmypodeService' do
+    expect(@antipode.amypode_service).to be_a(AmypodeService)
+  end
+
 end
