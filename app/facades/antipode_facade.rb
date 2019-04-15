@@ -32,10 +32,4 @@ class AntipodeFacade < LocationFacade
     end
   end
 
-  def forecast
-    {"summary": super["currently"]["summary"],
-     "current_temperature": super["currently"]["temperature"]}
-  end
-
-
 end
