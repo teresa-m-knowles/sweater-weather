@@ -3,13 +3,16 @@ class AntipodeFacade < LocationFacade
               :opp_long,
               :latitude,
               :longitude,
-              :location_name
+              :location_name,
+              :search_location
 
-  def initialize(opp_lat, opp_long)
+  def initialize(search_location, opp_lat, opp_long)
+    @id = 1
     @opp_lat = opp_lat
     @opp_long = opp_long
     coords
     location_name
+    @search_location = search_location
   end
 
   def coords
@@ -22,15 +25,15 @@ class AntipodeFacade < LocationFacade
     AmypodeService.new(@opp_lat, @opp_long)
   end
 
-  def search_location
-    location = ReverseGeocodeService.new(@opp_lat, @opp_long).get_location
-    
-    location[:results][0][:formatted_address]
-  end
-
   def location_name
     location = ReverseGeocodeService.new(@latitude, @longitude).get_location
     location[:results][0][:formatted_address]
+  end
+
+  def forecast
+    forecast = super
+    binding.pry
+
   end
 
 

@@ -71,4 +71,8 @@ class LocationFacade
     bing_service.image_url["value"][0]["contentUrl"]
   end
 
+  def formatted_address
+    geo_service.get_location[:results][0][:formatted_address]
+  end
+
 end
