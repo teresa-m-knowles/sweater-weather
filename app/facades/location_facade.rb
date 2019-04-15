@@ -15,8 +15,14 @@ class LocationFacade
     @longitude = geometry_location[:lng]
     @latitude = geometry_location[:lat]
     @city = geo_service.get_location[:results][0][:address_components][0][:long_name]
-    @state = geo_service.get_location[:results][0][:address_components][2][:short_name]
+    @state = state
     @country = geo_service.get_location[:results][0][:address_components][3][:long_name]
+  end
+
+  def state
+    if geo_service.get_location[:results][0][:address_components][2]
+      return geo_service.get_location[:results][0][:address_components][2][:short_name]
+    end
   end
 
   def get_or_create_location
