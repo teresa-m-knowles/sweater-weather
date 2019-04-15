@@ -1,4 +1,4 @@
-class Antipode
+class AntipodeFacade < LocationFacade
   attr_reader :opp_lat,
               :opp_long,
               :latitude,
@@ -22,8 +22,16 @@ class Antipode
     AmypodeService.new(@opp_lat, @opp_long)
   end
 
+  def search_location
+    location = ReverseGeocodeService.new(@opp_lat, @opp_long).get_location
+    
+    location[:results][0][:formatted_address]
+  end
+
   def location_name
     location = ReverseGeocodeService.new(@latitude, @longitude).get_location
     location[:results][0][:formatted_address]
   end
+
+
 end
