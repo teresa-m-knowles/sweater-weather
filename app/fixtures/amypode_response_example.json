@@ -3,8 +3,14 @@
         "id": "1",
         "type": "antipode",
         "attributes": {
-            "lat": -22.3193039,
-            "long": -65.8306389
+            "location_name": "Yavi Department, Jujuy, Argentina",
+            "forecast": {
+                "summary": "Clear",
+                "current_temperature": 60.22
+            }
+        },
+        "meta": {
+            "search_location": "Hong Kong"
         }
     }
 }

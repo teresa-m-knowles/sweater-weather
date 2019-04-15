@@ -32,8 +32,8 @@ class AntipodeFacade < LocationFacade
 
   def forecast
     forecast = super
-    binding.pry
-
+    {"summary": forecast["currently"]["summary"],
+     "current_temperature": forecast["currently"]["temperature"]}
   end
 
 
