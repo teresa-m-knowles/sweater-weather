@@ -27,7 +27,9 @@ class AntipodeFacade < LocationFacade
 
   def location_name
     location = ReverseGeocodeService.new(@latitude, @longitude).get_location
-    location[:results][0][:formatted_address]
+    if location[:results].any?
+      location[:results][0][:formatted_address]
+    end
   end
 
   def forecast
