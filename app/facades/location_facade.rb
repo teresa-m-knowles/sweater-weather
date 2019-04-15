@@ -6,7 +6,8 @@ class LocationFacade
               :state,
               :country,
               :id,
-              :city_and_state
+              :city_and_state,
+              :image_url
 
   def initialize(city_and_state)
     @id = 1
@@ -16,6 +17,20 @@ class LocationFacade
     @city = geo_service.get_location[:results][0][:address_components][0][:long_name]
     @state = geo_service.get_location[:results][0][:address_components][2][:short_name]
     @country = geo_service.get_location[:results][0][:address_components][3][:long_name]
+  end
+
+  def get_or_create_location
+    location = Location.find_by(city_and_state: "#{@city}, #{@state}")
+
+    unless location
+      location = Location.create!(
+        city_and_state: "#{@city}, #{@state}",
+        longitude: @longitude,
+        latitude: @latitude,
+        image_url: @image_url)
+    end
+    return location
+
   end
 
   def geometry_location
@@ -32,6 +47,14 @@ class LocationFacade
 
   def weather_service
     DarkSkyService.new
+  end
+
+  def bing_service
+    BingImageService.new(@city_and_state)
+  end
+
+  def image_url
+    bing_service.image_url["value"][0]["contentUrl"]
   end
 
 end
