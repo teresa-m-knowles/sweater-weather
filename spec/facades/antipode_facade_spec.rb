@@ -18,8 +18,8 @@ RSpec.describe AntipodeFacade do
 
   it 'has a latitude and longitude of itself' do
 
-    lat_of_antipode_in_arg = -22.350627
-    long_of_antipode_in_arg = -65.815084
+    lat_of_antipode_in_arg = -22.350627 #google search value
+    long_of_antipode_in_arg = -65.815084 #google search value
     expect(@antipode.latitude).to be_within(0.1).of(lat_of_antipode_in_arg)
     expect(@antipode.longitude).to be_within(0.1).of(long_of_antipode_in_arg)
   end
