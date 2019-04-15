@@ -1,7 +1,7 @@
 class Api::V1::BackgroundsController < Api::V1::BaseController
   def show
-    background = BackgroundImageFacade.new(params[:location])
+    location = LocationFacade.new(params[:location])
 
-    render json: BackgroundImageSerializer.new(background)
+    render json: BackgroundImageSerializer.new(location)
   end
 end
