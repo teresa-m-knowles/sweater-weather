@@ -17,6 +17,7 @@ class LocationFacade
     @city = geo_service.get_location[:results][0][:address_components][0][:long_name]
     @state = state
     @country = country
+    @image_url = image_url
   end
 
   def country

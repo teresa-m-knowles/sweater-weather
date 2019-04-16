@@ -1,7 +1,8 @@
-class LocationSerializer
+
+class FavoriteSerializer
   include FastJsonapi::ObjectSerializer
-  
-  attributes :city,
+
+  attributes :city_and_state,
              :state,
              :country,
              :forecast
