@@ -19,6 +19,5 @@ class FavoritesListFacade
     locations_facades.map do |location_facade|
       FavoriteFacade.new(location_facade.city_and_state)
     end
-
   end
 end

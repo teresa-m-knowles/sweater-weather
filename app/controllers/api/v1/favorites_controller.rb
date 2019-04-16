@@ -29,6 +29,13 @@ class Api::V1::FavoritesController < Api::V1::BaseController
     params.permit(:location, :api_key)
   end
 
+  def create_json(locations)
+    locations.each do |location|
+    end 
+
+
+  end
+
   def rescue_favorite_not_unique(user, location)
     begin
       favorite = Favorite.new(user: user, location: location)

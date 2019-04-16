@@ -26,12 +26,14 @@ RSpec.describe 'A user can see a list of their favorite locations' do
       expect(@user.favorites.count).to eq(2)
 
       get '/api/v1/favorites', params: { "api_key": "#{@user.api_key}"}
-      
-      binding.pry
 
+      info = JSON.parse(response.body, symbolize_names: true)
 
+      expect(info[:data].count).to eq(2)
+      expect(info[:data][0][:attributes][:location]).to eq("Denver, CO")
 
-
+      expect(info[:data][0][:attributes]).to have_key(:current_weather)
+      expect(info[:data][0][:attributes]).to have_key(:location) 
     end
   end
 end
