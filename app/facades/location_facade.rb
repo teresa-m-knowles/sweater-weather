@@ -15,8 +15,22 @@ class LocationFacade
     @longitude = geometry_location[:lng]
     @latitude = geometry_location[:lat]
     @city = geo_service.get_location[:results][0][:address_components][0][:long_name]
-    @state = geo_service.get_location[:results][0][:address_components][2][:short_name]
-    @country = geo_service.get_location[:results][0][:address_components][3][:long_name]
+    @state = state
+    @country = country
+  end
+
+  def country
+    geo_service.get_location[:results][0][:address_components][3]
+    if geo_service.get_location[:results][0][:address_components][3]
+      return geo_service.get_location[:results][0][:address_components][3][:long_name]
+    end
+
+  end
+
+  def state
+    if geo_service.get_location[:results][0][:address_components][2]
+      return geo_service.get_location[:results][0][:address_components][2][:short_name]
+    end
   end
 
   def get_or_create_location
@@ -55,6 +69,10 @@ class LocationFacade
 
   def image_url
     bing_service.image_url["value"][0]["contentUrl"]
+  end
+
+  def formatted_address
+    geo_service.get_location[:results][0][:formatted_address]
   end
 
 end

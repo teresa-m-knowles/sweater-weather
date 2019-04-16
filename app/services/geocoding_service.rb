@@ -4,7 +4,6 @@ class GeocodingService
 
   def initialize(city_and_state)
     @city_and_state = city_and_state
-
   end
 
   def conn
