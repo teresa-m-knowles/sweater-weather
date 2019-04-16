@@ -12,10 +12,10 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   def index
     user = User.find_by(api_key: list_favorites_params[:api_key])
     if user
-      locations_facades = user.locations.map do |location|
-        LocationFacade.new(location)
-      end
-      binding.pry
+      locations = FavoritesListFacade.new(user).favorites_facades
+      render json: FavoriteFacadeSerializer.new(locations).serialized_json
+    else
+      render json: { }, status: 401
     end
   end
 
