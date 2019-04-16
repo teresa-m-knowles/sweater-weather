@@ -1,4 +1,3 @@
-
 class FavoriteSerializer
   include FastJsonapi::ObjectSerializer
 

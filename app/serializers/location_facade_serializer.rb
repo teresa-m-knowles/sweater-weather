@@ -1,4 +1,3 @@
-
 class LocationFacadeSerializer
   include FastJsonapi::ObjectSerializer
 
