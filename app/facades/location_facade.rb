@@ -53,7 +53,9 @@ class LocationFacade
   end
 
   def forecast
-    weather_service.get_forecast(latitude, longitude)
+    Rails.cache.fetch("#{@city_and_state}/forecast", expires_in: 1.hour1) do
+      weather_service.get_forecast(latitude, longitude)
+    end
   end
 
   def geo_service
