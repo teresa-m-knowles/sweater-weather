@@ -28,7 +28,19 @@ RSpec.describe 'A user can see a list of their favorite locations' do
                                            "location": "Denver, CO",
                                            "api_key": "#{@user.api_key}"
                                          }
-      expect(@user.favorites).to eq(1)
+
+      expect(@user.favorites.count).to eq(1)
+
+      @user.locations.each do |location|
+        expect(location.city_and_state).to_not include("Denver")
+      end
+
+
+
+      info = JSON.parse(response.body, symbolize_names: true)
+
+      expect(info[:data].count).to eq(1)
+      expect(info[:data][0][:attributes][:locations][:location]).to include("New York")
     end
   end
 end

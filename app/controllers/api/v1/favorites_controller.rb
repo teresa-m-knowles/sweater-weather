@@ -6,8 +6,11 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   end
 
   def destroy
-
-
+    location = FavoriteFacade.new(favorite_params[:location]).get_or_create_location
+    favorite = Favorite.find_by(location_id: location.id, user_id: @user.id)
+    favorite.destroy
+    locations = FavoritesListFacade.new(@user).favorites_facades
+    render json: FavoritesListSerializer.new(locations)
   end
 
   def index
@@ -32,13 +35,6 @@ class Api::V1::FavoritesController < Api::V1::BaseController
 
   def favorite_params
     params.permit(:location, :api_key)
-  end
-
-  def create_json(locations)
-    locations.each do |location|
-    end
-
-
   end
 
   def rescue_favorite_not_unique(user, location)
