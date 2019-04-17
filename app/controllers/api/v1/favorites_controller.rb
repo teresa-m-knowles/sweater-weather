@@ -1,26 +1,30 @@
 class Api::V1::FavoritesController < Api::V1::BaseController
+  before_action :find_user
   def create
-    user = User.find_by(api_key: favorite_params[:api_key])
-    if user
-      location = LocationFacade.new(favorite_params[:location]).get_or_create_location
-      rescue_favorite_not_unique(user, location)
+    location = LocationFacade.new(favorite_params[:location]).get_or_create_location
+    rescue_favorite_not_unique(@user, location)
+  end
+
+  def destroy
+
+
+  end
+
+  def index
+    locations = FavoritesListFacade.new(@user).favorites_facades
+    render json: FavoritesListSerializer.new(locations)
+  end
+
+  private
+
+  def find_user
+    @user = User.find_by(api_key: list_favorites_params[:api_key])
+    if @user
+      return @user
     else
       render status: 401, json: { "errors": "There's a problem with your api key"}
     end
   end
-
-  def index
-    user = User.find_by(api_key: list_favorites_params[:api_key])
-    if user
-      locations = FavoritesListFacade.new(user).favorites_facades
-      render json: FavoritesListSerializer.new(locations)
-    
-    else
-      render json: { }, status: 401
-    end
-  end
-
-  private
 
   def list_favorites_params
     params.permit(:api_key)
