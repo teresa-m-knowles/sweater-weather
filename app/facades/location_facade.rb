@@ -53,7 +53,7 @@ class LocationFacade
   end
 
   def forecast
-    Rails.cache.fetch("#{@city_and_state}/forecast", expires_in: 1.hour1) do
+    Rails.cache.fetch("#{@city_and_state}/forecast", expires_in: 1.hour) do
       weather_service.get_forecast(latitude, longitude)
     end
   end
@@ -75,7 +75,7 @@ class LocationFacade
   end
 
   def formatted_address
-    Rails.cache.fetch("#{@city_and_state}/image", expires_in: 1.hour1) do
+    Rails.cache.fetch("#{@city_and_state}/image", expires_in: 1.day) do
       geo_service.get_location[:results][0][:formatted_address]
     end
   end
