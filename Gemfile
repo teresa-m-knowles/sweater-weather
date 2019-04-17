@@ -44,6 +44,7 @@ gem 'figaro'
 gem 'faraday'
 gem 'awesome_print'
 gem 'bcrypt'
+gem 'simplecov'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

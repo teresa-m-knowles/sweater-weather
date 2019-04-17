@@ -29,8 +29,7 @@ RSpec.describe AntipodeFacade do
   end
 
   it 'has a forecast' do
-    expect(@antipode.forecast).to have_key(:summary)
-    expect(@antipode.forecast).to have_key(:current_temperature)
+    expect(@antipode.forecast).to have_key("currently")
   end
 
   it 'has a search_location' do
