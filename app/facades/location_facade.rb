@@ -71,15 +71,11 @@ class LocationFacade
   end
 
   def image_url
-    Rails.cache.fetch("#{@city_and_state}/image", expires_in: 12.days) do
-      bing_service.image_url["value"][0]["contentUrl"]
-    end
+    bing_service.image_url["value"][0]["contentUrl"]
   end
 
   def formatted_address
-    Rails.cache.fetch("#{@city_and_state}/image", expires_in: 1.day) do
-      geo_service.get_location[:results][0][:formatted_address]
-    end
+    geo_service.get_location[:results][0][:formatted_address]
   end
 
 end
