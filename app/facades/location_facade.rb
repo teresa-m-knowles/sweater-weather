@@ -75,7 +75,9 @@ class LocationFacade
   end
 
   def formatted_address
-    geo_service.get_location[:results][0][:formatted_address]
+    Rails.cache.fetch("#{@city_and_state}/image", expires_in: 1.hour1) do
+      geo_service.get_location[:results][0][:formatted_address]
+    end
   end
 
 end
