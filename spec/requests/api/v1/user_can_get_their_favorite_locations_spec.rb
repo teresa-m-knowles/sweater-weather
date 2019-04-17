@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+ 
 RSpec.describe 'A user can see a list of their favorite locations' do
   before :each do
     @user = User.create!(email: "whatever@example.com",
