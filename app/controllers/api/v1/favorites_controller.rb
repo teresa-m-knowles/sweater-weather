@@ -13,7 +13,8 @@ class Api::V1::FavoritesController < Api::V1::BaseController
     user = User.find_by(api_key: list_favorites_params[:api_key])
     if user
       locations = FavoritesListFacade.new(user).favorites_facades
-      render json: FavoriteFacadeSerializer.new(locations).serialized_json
+      render json: FavoritesListSerializer.new(locations)
+    
     else
       render json: { }, status: 401
     end
@@ -31,7 +32,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
 
   def create_json(locations)
     locations.each do |location|
-    end 
+    end
 
 
   end

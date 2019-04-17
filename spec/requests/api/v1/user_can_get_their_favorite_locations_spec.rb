@@ -30,10 +30,10 @@ RSpec.describe 'A user can see a list of their favorite locations' do
       info = JSON.parse(response.body, symbolize_names: true)
 
       expect(info[:data].count).to eq(2)
-      expect(info[:data][0][:attributes][:location]).to eq("Denver, CO")
+      expect(info[:data][0][:attributes][:locations][:location]).to include("Denver, CO")
 
-      expect(info[:data][0][:attributes]).to have_key(:current_weather)
-      expect(info[:data][0][:attributes]).to have_key(:location) 
+      expect(info[:data][0][:attributes][:locations]).to have_key(:current_weather)
+      expect(info[:data][0][:attributes][:locations]).to have_key(:location)
     end
   end
 end
