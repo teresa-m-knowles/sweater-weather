@@ -4,6 +4,6 @@ class Api::V1::AntipodesController < Api::V1::BaseController
 
     antipode = AntipodeFacade.new(location.formatted_address, location.latitude, location.longitude)
 
-    render json: AntipodeSerializer.new(antipode)
+    render json: AntipodeSerializer.new(antipode), cached: true
   end
 end
